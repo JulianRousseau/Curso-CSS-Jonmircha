@@ -1,0 +1,101 @@
+/* 
+  Links de referencia y documentación
+  https://es.wikipedia.org/wiki/Hoja_de_estilos_en_cascada
+  https://www.w3.org/html/logo/
+  https://www.w3.org/standards/webdesign/htmlcss.html
+  https://www.w3.org/TR/css-2020/
+  https://developer.mozilla.org/es/docs/Web/CSS
+  https://cssreference.io/
+  https://caniuse.com/
+  https://codeguide.co/
+*/
+
+/* 
+Regla CSS consta de dos partes 
+1) el selector 
+2) bloque de declaraciones: {
+    atributo:valor; 
+}
+*/
+
+@import url(./otra-hoja.css);
+/* Forma de llamar una hoja de estilos dentro de otra  */
+/* Es una mala practica porque son bloqueantes en el momento que el navegador lee esta instruccion */
+/* hasta que el navegador no obtiene la informacion de este import no continua con el resto del codigo */
+
+/* ------------------------------------- Selectores Basicos ------------------------------------- */
+/* 
+1) Etiquetas de HTML  
+2) #id
+3) .class 
+*/
+
+#p-con-id {
+  color: lightcoral;
+}
+
+.p-con-class {
+  color: lightgreen;
+}
+
+.text-20 {
+  font-size: 20px;
+}
+
+.color-skyblue {
+  color: skyblue;
+}
+
+/* ------------------------------------ Selectores Avanzados ------------------------------------ */
+.hijos-directos > li {
+  background-color: rgb(167, 136, 255);
+}
+/* > solo seleccionaran los elementos que sean hijos directos  */
+
+.hijos-descendientes b {
+  background-color: rgb(167, 136, 255);
+}
+/* " " el espacio indica que seleccionara los hijos sin importar su nivel  */
+
+.hermanos-general ~ li {
+  color: rgb(167, 136, 255);
+}
+/* ~ selecciona los hermanos de el mismo nivel */
+
+.hermanos-adyacente + li {
+  color: rgb(167, 136, 255);
+}
+/* + selecciona solo al hermano que este debajo de el  */
+
+/* los selectores de hermanos (general y adyacente) van a aplicar estilos 
+a los elementos que son hermanos y que esten por debajo de la referencia */
+
+.selectores-atributos p[title] {
+  color: lightsalmon;
+}
+/* [atributo] seleccionara a los elementos que tengan ese atributo  */
+
+.selectores-atributos p[title*="titulo"] {
+  font-size: 1.3rem;
+}
+/* El comodin * aplica el estilo si contiene la palabra (en este caso "titulo") */
+
+.selectores-atributos p[title^="inicio"] {
+  text-decoration: overline;
+}
+/* El comodin ^ aplica el estilo si contiene la palabra al inicio (en este caso "inicio")*/
+
+.selectores-atributos p[title$="final"] {
+  text-decoration: underline;
+}
+/* El comodin $ aplica el estilo si contiene la palabra al final (en este caso "final")*/
+
+.selectores-atributos p[title~="espacio"] {
+  text-decoration: line-through;
+}
+/* El comodin ~ aplica el estilo si contiene la palabra en una lista separada por espacios*/
+
+.selectores-atributos p[title="titulo-especifico"] {
+  font-weight: bold;
+}
+/* [atributo=valor] seleccionara a los elementos que tengan ese atributo igual a cierto valor  */
