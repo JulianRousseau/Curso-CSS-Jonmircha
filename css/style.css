@@ -99,3 +99,202 @@ a los elementos que son hermanos y que esten por debajo de la referencia */
   font-weight: bold;
 }
 /* [atributo=valor] seleccionara a los elementos que tengan ese atributo igual a cierto valor  */
+
+* {
+  font-family: sans-serif;
+}
+/* el selector universal va a aplicar los estilos a todos los elementos  */
+
+.selector-universal * {
+  color: aquamarine;
+}
+/* puedo usar el selector universal para seleccionar todos los elementos dentro de un scope 
+ej: todo lo que esta dentro de la clase */
+
+/* ---------------------------------------- Pseudoclases ---------------------------------------- */
+/* Dan estilos dependiendo del contexto, posicion o estado del elemento  */
+
+.from-pseudoclases *:invalid {
+  border: 2px solid red;
+}
+/* cuando cualquier elemento de este form tiene un dato invalido  */
+
+.from-pseudoclases *:valid {
+  border: 2px solid greenyellow;
+}
+/* cuando cualquier elemento de este form tiene un dato valido  */
+
+.from-pseudoclases *:required {
+  border: 2px solid yellow;
+}
+/* cuando cualquier elemento de este form tiene un dato requeido */
+
+.from-pseudoclases *:focus {
+  background-color: skyblue;
+}
+/* cuando cualquier elemento de este form esta en foco */
+
+.from-pseudoclases *:disabled {
+  background-color: gray;
+}
+/* cuando cualquier elemento de este form esta deshabilitado */
+
+.from-pseudoclases *:disabled::placeholder {
+  color: white;
+}
+
+.menu-pseudoclases a:link {
+  color: blue;
+}
+/* link, estilos para enlaces no visitados */
+
+.menu-pseudoclases a:visited {
+  color: skyblue;
+}
+/* visited, cuando el enlace ya fue visitado */
+
+.menu-pseudoclases a:hover {
+  color: orangered;
+}
+/* hover, cuando tenemos el mouse sobre el elemento */
+
+.menu-pseudoclases a:active {
+  color: greenyellow;
+}
+/* Enlaces activos (cuando estamos haciendo click) */
+
+#temas-css:target {
+  color: orange;
+}
+/* :target aplica los estilos cuando en la url esta activo ese id  */
+
+.lista-pseudoclases :first-child {
+  color: greenyellow;
+}
+/* :first-child para el primer elemento*/
+
+.lista-pseudoclases :last-child {
+  color: red;
+}
+/* :last-child para el ultimo elemento*/
+
+.lista-pseudoclases :nth-child(2) {
+  color: blue;
+}
+/* :nth-child() le pasamos como parametro la posicion del hijo seleccionado */
+
+.lista-pseudoclases :nth-child(2n) {
+  font-weight: 800;
+}
+/* :nth-child(Xn) cada X numero de veces aplica estilos */
+
+.lista-pseudoclases :nth-child(even) {
+  background-color: grey;
+}
+/* :nth-child(even) aplica a los pares  */
+
+.lista-pseudoclases :nth-child(odd) {
+  background-color: lightgray;
+}
+/* :nth-child(odd) aplica a los impares */
+
+/* de la misma forma como aplicamos los estilos directamente,
+ tambien lo podemos hacer teniendo en cuenta el tipo de elemento */
+.articulo-pseudoclase p:first-of-type {
+  color: bisque;
+}
+/* :first-of-type el primero de su tipo */
+
+.articulo-pseudoclase p:last-of-type {
+  color: yellow;
+}
+/* :last-of-type el ultimo de su tipo */
+
+.articulo-pseudoclase p:nth-of-type(3) {
+  color: fuchsia;
+}
+/* :nth-of-type(3) en esa posicion de su tipo */
+/* Y lo mismo se puede hacer con :nth-of-type(2n), :nth-of-type(even), etc.  */
+
+.articulo-pseudoclase *:not(p) {
+  background-color: burlywood;
+}
+/* :not() negacion del parametro que le pasamos, en este caso aplica los estilos excepto a los p  */
+
+/* --------------------------------------- Pseudoelementos -------------------------------------- */
+/* Dan estilos a partes especificas de un elemento  */
+
+.pseudoelemento1::before {
+  content: "😃";
+}
+/* ::before para agregar contenido y estilos antes del elemento */
+
+.pseudoelemento1::after {
+  content: "Rousseau";
+}
+/* ::after para agregar contenido y estilos despues del elemento */
+
+.pseudoelemento2::first-letter {
+  font-size: 30px;
+  font-weight: bold;
+}
+/* ::first-letter para modificar la primera letra */
+
+.pseudoelemento2::first-line {
+  font-size: 20px;
+  font-weight: bold;
+}
+/* ::first-line para modificar la primera linea  */
+
+.pseudoelemento2::selection {
+  color: greenyellow;
+  background-color: black;
+}
+/* ::selection para cuando seleccionamos el texto  */
+
+.pseudoelemento3::placeholder {
+  color: red;
+}
+
+/* ------------------------------------- Agrupar Selectores ------------------------------------- */
+
+.agrupar_selectores input,
+.agrupar_selectores textarea {
+  background-color: black;
+  color: white;
+  width: 300px;
+  display: block;
+  border: 1px solid orangered;
+}
+/* se grupan con ","  */
+
+/* ------------------------------------- El Algoritmo de CSS ------------------------------------ */
+/* ---------------------------------------------------------------------------------------------- */
+/*               Es la forma en la que el navegador aplica los estilos al documento               */
+/* ---------------------------------------------------------------------------------------------- */
+/* 
+  1) Cascada
+  2) Especificidad
+  3) Herencia  
+
+La Cascada es el mecanismo en que el navegador aplica los estilos. Y toma en cuenta lo siguiente en este orden:
+  1) El Origen del Código:
+    - El User Agent (los estilos por defecto del navegador)
+    - Personalizaciones del usuario.
+    - Los estilos del autor.
+  2) La Especificidad del Selector
+  3) Orden de Aparición
+
+La Especificidad es el peso que tiene un selector cuando hay conflicto de estilos. Se calcula de la siguiente forma:
+  Etiquetas y pseudoelementos -------------- 0,0,0,1
+  Clases, atributos y pseudoclases ------------0,0,1,0
+  Identificadores -------------------------------0,1,0,0
+  Estilos en línea--------------------------------1,0,0,0
+  !important ------------------Rompe la especificidad
+
+La Herencia, es la capacidad de un selector de obtener (heredar) los valores de sus ancestros más cercanos, 
+para aplicarla se usa el valor inherit, si queremos evitarla podemos asignar otro valor o 
+inicializar la propiedad en cuestión con el valor initial
+
+https://web.dev/learn/css/inheritance/#which-properties-are-inheritable
+*/
