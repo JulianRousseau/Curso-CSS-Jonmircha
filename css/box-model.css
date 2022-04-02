@@ -1,0 +1,136 @@
+@import url(./otra-hoja.css);
+
+/* 
+https://developer.mozilla.org/es/docs/Learn/CSS/Building_blocks/El_modelo_de_caja
+
+Modelo de Caja: Es la forma en que CSS ve a los elementos HTML, como si fueran cajas con las siguientes propiedades:
+  1. El contenido (content): El contenido (texto) del elemento HTML, tomando en cuanta sus dimensiones (width & height)
+  2. El borde (border): Lo que delimita cada uno de los elementos HTML
+  3. El relleno (padding): Son las distancias internas (La distancia del borde al contenido)
+  3. El márgen (margin): Son las distancias externas (La distancia entre el elemento html y sus elementos hermanos o padres)
+
+Dentro del modelo de caja hay que considerar que una caja tendrá 4 lados:
+  1. Arriba (top)
+  2. Derecha (right)
+  3. Abajo (bottom)
+  4. Izquierda (left)
+*/
+
+/* -------------------------------- Width (ancho) Y Height (alto) ------------------------------- */
+h1{
+    width: 150px;
+    height: 40px;
+}
+
+/* ------------------------------------------- Border ------------------------------------------- */
+
+h1{
+    /* propiedades shorthand (agrupan varias propiedades)*/
+    border: 2px orangered solid;
+    /* o por separado 
+    border-color: orangered;
+    border-width: 2px;
+    border-style: dotted;
+    */
+
+    /* cada borde con top right left bottom  */
+    border-bottom: 2px solid black ;
+}
+
+/* -------------------------------------- Margin y Padding -------------------------------------- */
+
+.caja-1,
+.caja-2{
+    background-color: mediumaquamarine;
+    border: medium orange solid;
+    padding: 10px;
+    padding-left: 50px;
+    margin: 10px;
+    margin-right: 400px;
+    /*
+    margin y padding:
+    1 valor   = los 4 lados
+    2 valores = (arriba y abajo) y (derecha e izquierda)
+    3 valores = (arriba), (derecha e izquierda) y (abajo)
+    4 valores = (arriba), (derecha), (abajo) y (izquierda)
+    */
+}
+
+/* ---------------------------------------- Caja de linea --------------------------------------- */
+/*
+-Ocupan el espacio necesario para mostrar su contenido
+  - Ocupan el espacio necesario para mostrar su contenido.
+  - No tienen dimensiones modificables (alto, ancho).
+  - Permiten otros elementos a su lado.
+  - Padding y margin solo empujan a elementos adyacentes en horizontal, nunca en vertical.
+*/
+
+.caja-inline {
+    background-color: darkcyan;
+    margin: 10px;
+    padding-bottom: 15px; /* con esto se puede ver que no empuja en verical*/
+}
+
+/* --------------------------------------- Caja de Bloque --------------------------------------- */
+/*
+  - Ocupan todo el ancho disponible, lo que genera saltos de línea.
+  - Tienen dimensiones modificables (alto, ancho).
+  - No permiten otros elementos a su lado (aunque especifique un ancho, 
+    siguen ocupando todo el espacio disponible a lo ancho, generando saltos de línea).
+*/
+
+.caja-block{
+    background-color: darkgoldenrod;
+    width: 250px;
+    height: 30px;
+    margin: 10px;
+}
+
+/* ------------------------------------------- Display ------------------------------------------ */
+/* 
+  inline
+  block
+  inline-block - Se comporta como un elemento de línea pero acepta modificar sus dimensiones (alto y ancho)
+  none
+  table (lo tienen las tablas)
+  list-item (lo tienen las li)
+  flex (Curso aparte)
+  grid - (Curso aparte)
+*/
+
+.caja-none{
+    /* display: none; */
+    background-color: darkblue;
+    padding: 16pxf;
+}
+
+.caja-inline-block{
+    display: inline-block;
+    background-color: darkorchid;
+    height: 200px;
+    width: 500px;
+    margin: 10px 0;
+    border: medium black solid;
+}
+
+/* --------------------------------- Flex y Grid (cursos aparte) -------------------------------- */
+/* Solo para que se vean bien, lo merecen (? */
+.curso-flex, 
+.curso-grid{
+    display: inline-block;
+    font-family: sans-serif;
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.curso-flex{
+    color: white;
+    background-color: darkslateblue;
+}
+
+.curso-grid{
+    color: black;
+    background-color: pink;
+}
